@@ -1,17 +1,25 @@
 //import './PlayerName.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function PlayerName(props) {
 	let [player_name, setPlayerName] = useState("");
 	let [show_name, setShowName] = useState(false);
 
+	useEffect( () => {
+		if(show_name)
+			props.onPlayerNameChange(player_name);
+		});
+
 	function update_name (event) {
 		console.log(event.target.value);
 		setPlayerName(event.target.value);
 	}
+
 	function write_name() {
 		console.log("Nombre: "+player_name);
+		
 		let pn_tmp = player_name.trim();
+		
 		if(pn_tmp.length < 3 || pn_tmp.length > 12)
 			return;
 
