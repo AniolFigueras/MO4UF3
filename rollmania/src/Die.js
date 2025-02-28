@@ -18,7 +18,9 @@ function Die(props) {
 	}
 	
 	if (props.roll){
-	number = get_random();
+		number = get_random();
+
+		props.onResult(number);
 	}
 
 	return (

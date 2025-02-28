@@ -1,24 +1,32 @@
 import './Dice.css';
-import Die from './Die.js' 
-
-function get_dice (quantity, roll){
-	let dice_list = [];
-	
-	for (let i = 0; i < quantity; i++){
-		dice_list.push(<Die key={i} roll={roll} />);
-	}
-	
-	return dice_list;
-}
+import Die from './Die.js';
 
 
 function Dice(props) {
-return (
-		
-    	<div className="Dice">
+	
+	let total = 0;
+
+	function add_result(value){
+		total += value;
+		console.log(value+" "+total);
+	}
+
+	function get_dice (quantity, roll){
+		let dice_list = [];
+	
+		for (let i = 0; i < quantity; i++){
+			dice_list.push(<Die key={i} roll={roll} onResult={add_result} />);
+		}
+	
+		return dice_list;
+	}
+
+
+	return (	
+		<div className="Dice">
 			{get_dice(props.cantidad, props.roll)}
-			</div>
-  );
+		</div>
+	);
 }
 
 export default Dice;
